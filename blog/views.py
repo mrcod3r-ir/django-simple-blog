@@ -12,5 +12,8 @@ def contact(request):
   return render(request,'blog/contact.html')
 
 def post(request):
-  return render(request,'blog/post.html')
+  context = {
+    "singlePage":True
+  }
+  return render(request,'blog/post.html',context)
 

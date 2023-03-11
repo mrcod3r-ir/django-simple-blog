@@ -1,5 +1,5 @@
 {% load static %}
-{% with singlePost=False %}{% endwith %}
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -32,14 +32,6 @@
 		<link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 	</head>
 	<body>
-		{% if singlePost %}
-				<h1>boz</h1>
-		{% endif %}
-		{% with request.resolver_match.view_name as view_name %}
-				...
-				{{ view_name }}
-				...
-		{% endwith %}
 		<!-- Navigation-->
 		<nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
 			<div class="container px-4 px-lg-5">
@@ -85,9 +77,16 @@
 			<div class="container position-relative px-4 px-lg-5">
 				<div class="row gx-4 gx-lg-5 justify-content-center">
 					<div class="col-md-10 col-lg-8 col-xl-7">
-						<div class="site-heading">
+						<div class="{% if singlePage %} post-heading {% else %} site-heading  {% endif %}">
 							<h1>{% block pageHeading %}Clean Blog{% endblock %}</h1>
 							<span class="subheading">{% block subheading %}A Blog Theme by Start Bootstrap{% endblock %}</span>
+							{% if singlePage %}
+								<span class="meta">
+										Posted by
+										<a href="#!">Start Bootstrap</a>
+										on August 24, 2022
+								</span>
+							{% endif %}
 						</div>
 					</div>
 				</div>
